@@ -5,7 +5,7 @@
 Se desea detectar si existe algún porciento de plagio entre dos documentos dados.
 
 # Consideraciones tomadas
-
+Se deben instalar los requerimientos previos para que el programa se ejecute que estan descritos en requirement.txt
 Para ejecutar el programa se debe correr en el cmd el archivo main.py:
 
 ``` py main.py```
@@ -16,7 +16,7 @@ Para ejecutar el programa se debe correr en el cmd el archivo main.py:
 
 En este archivo existen dos métodos que consisten en procesar los documentos dados para obtener una lista de tokens los cuales podemos calcular su similitud mas eficientemente:
 
-- preprocess_text: Este método recibe un documento(string), le remueve todas las minúsculas, lo divide en párrafos  apoyándose en el método conver_to_paragraph, luego por cada oración en cada párrafo tokeniza sus palabras con la función de nltk word_tokenize y esta lista de listas es lo que se devuelve.
+- preprocess_text: Este método recibe un documento(string), le remueve todas las minúsculas, lo divide en párrafos  apoyándose en el método convert_to_paragraph, luego por cada oración en cada párrafo tokeniza sus palabras con la función de nltk word_tokenize y esta lista de listas es lo que se devuelve.
 
 - convert_to_paragraph: Este método recibe un documento(string) y devuelve una lista con los párrafos de dicho documento, donde se asume que cada párrafo es un cambio de línea, apoyandose de la función del nltk sent_tokenize.
 
