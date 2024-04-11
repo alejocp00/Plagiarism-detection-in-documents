@@ -40,4 +40,4 @@ Un marco (content_frame) para organizar los elementos de la GUI.
 - Otro botón que, al ser presionado devuele el resultado de most_similar_path que es el párrafo con mayor similitud con respecto al primer documento
 - Una etiqueta (similarity_score_label) para mostrar el resultado de la comparación de similitud entre los textos ingresados.
 
-La GUI permite a los usuarios ingresar dos textos y compararlos para detectar plagio. Sin embargo, debido al error mencionado, el botón no funcionará como se espera. Además, la etiqueta para mostrar el resultado de la comparación no se actualiza con el resultado de la comparación, lo que significa que el usuario no puede ver el resultado de la detección de plagio.
+La GUI permite a los usuarios ingresar dos textos y compararlos para detectar plagio.
