@@ -1,13 +1,13 @@
 from nltk.tokenize import word_tokenize, sent_tokenize
 
 
-def preprocess_text(query):
+def preprocess_text(query: str):
     """
     Args:
         query (str): The input query to be preprocessed.
 
     Returns:
-        list: The corpus?.
+        list: The list of tokenize word per sentences in a block of the document.
     """
     query = query.lower()
     paragraphs = convert_to_paragraphs(query)
@@ -17,7 +17,7 @@ def preprocess_text(query):
     return tokenized_words
 
 
-def convert_to_paragraphs(text):
+def convert_to_paragraphs(text: str):
     """
     Args:
         text (str): The input text to be converted to paragraphs.

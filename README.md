@@ -2,17 +2,34 @@
 
 
 # Descripción del problema
-Se desea detectar si existe algun porciento de plagio entre dos documentos dados.
+Se desea detectar si existe algún porciento de plagio entre dos documentos dados.
 
 # Consideraciones tomadas
-Se realiza el calculo de plagio en documentos escritos en ingles.
 
-Para ejecutar el programa se debe correr en el cmd el archivo main.py
+Para ejecutar el programa se debe correr en el cmd el archivo main.py:
+
 ``` py main.py```
 
 # Explicación de la solución
 
+## Preprocesamiento de los datos
 
+En este archivo existen dos métodos que consisten en procesar los documentos dados para obtener una lista de tokens los cuales podemos calcular su similitud mas eficientemente:
+
+- preprocess_text: Este método recibe un documento(string), le remueve todas las minúsculas, lo divide en párrafos  apoyándose en el método conver_to_paragraph, luego por cada orcaión en cada párrafo tokeniza sus palabras con la funcion de nltk word_tokenize y esta lista de listas es lo que se devuelve.
+
+- convert_to_paragraph: Este método recibe un documento(string) y devuelve una lista con los párrafos de dicho documento, donde se asume que cada párrafo es un cambio de linea, apoyandose de la función del nltk sent_tokenize.
+
+## Detección de plagio entre dos documentos:
+En este archivo se tiene una clase llamada Plagiarism la cual contiene dos variables globales que son max_sim y path, las cuales llevan las mayores similitud entre los bloques y el texto el cual estamos buscando el plagio respectivamente, esta clase también contiene dos métodos:
+
+- detect_plagiarism: Este método recibe dos documentos(string) 
+ preprocesa el primer texto apoyándose de preprocess_text, luego se crea un diccionario con ayuda de gensim, con la lista de tokens recibidos de preprocess_text donde cada palabra(distinta) tiene un único id. Luego a partir de esto se crea el corpus(BOW) que es básicamente un objeto que contiene el id de la palabra y su frecuencia en cada documento. 
+ Luego de esto se realiza TF_IDF que lo que se hace es multiplicar un componente local(TF) con un componente global, por lo que se obtiene que una palabra que ocurre con mucha frecuencia tiene un "peso" pequeno.
+ Luego se crea un objecto Sim en una carpeta (simObjectDir) con el objetivo deguardar los índices de la matriz utilizando la clase Similarity en gensim: Similarity construye un índice a partir de un conjunto de documentos(párrafos) dado, esta clase divide el índice en muchos pequenos sub-índices.
+ Una vez creado esto se procede a calcular la similitud entre los dos textos, donde primero se preprocesa el segundo documento y se actualiza el diccionario con las palabra nuevas(si lo requiere) que contiene dicho documento y se guarda en un array la similitud de cada parrafo del segundo documento con respecto a cada párrafo del primer documento. Luego de esto se escoge la mayor similitud existente por cada párrafo del segundo texto con respecto al primero y se devuelve el promedio de estas similitudes máximas.
+
+- most_similar_path: Este método devuelve el párrafo que contiene la mayor similitud con respecto al primer documento, de manera que dado las mayores similitudes de los párrafos del segundo documento con respecto al primero, se escoge el índice de este y se busca en el parrafos del documento.
 ## Interfaz visual
 Este código crea una interfaz gráfica de usuario (GUI) simple para una herramienta de detección de plagio utilizando Tkinter. La GUI consta de:
 

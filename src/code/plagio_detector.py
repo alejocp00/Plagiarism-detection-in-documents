@@ -8,7 +8,7 @@ class Plagiarism:
         self.max_sim = []
         self.path = []
 
-    def detect_plagiarism(self, text1, text2):
+    def detect_plagiarism(self, text1: str, text2: str):
         """
         Compara dos piezas de texto y calcula su similitud.
 
@@ -31,15 +31,13 @@ class Plagiarism:
 
         self.path = text2
         text2_processed = preprocess_text(text2)
-        similarity = []
+        similarities_per_block= []
         for line in text2_processed:
             query_doc_bow = dictionary.doc2bow(line)
             query_doc_tf_idf = tf_idf[query_doc_bow]
-            similarity.append(query_doc_tf_idf)
+            similarity.append(sim[query_doc_tf_idf])
 
-        vectors = [sims[vec] for vec in similarity]
-
-        self.max_sim = [max(ind) for ind in vectors]
+        self.max_sim = [max(ind) for ind in similarities_per_block]
 
         similarity_percentage = int(sum(self.max_sim) / len(self.max_sim) * 100)
 
